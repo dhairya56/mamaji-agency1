@@ -3,97 +3,972 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Advertising Agency | The Standard in Media Distribution</title>
+    <title>Gangajal Express Agency | The Standard in Media Distribution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Georgia', serif; margin: 0; background: #f4f4f4; color: #111; }
-        header { background: #fff; border-bottom: 4px solid #000; padding: 20px 0; text-align: center; }
-        .logo { font-size: 48px; font-weight: 900; text-transform: uppercase; letter-spacing: -2px; }
-        .date { font-size: 12px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 5px 0; margin-top: 10px; text-transform: uppercase; }
-        
-        nav { background: #fff; border-bottom: 1px solid #000; position: sticky; top: 0; z-index: 100; }
-        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; }
-        nav li a { padding: 15px 20px; display: block; text-decoration: none; color: #000; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-        nav li a:hover { color: #d10000; }
+        :root {
+            --black: #0d0d0d;
+            --red: #c0181e;
+            --red-dark: #8b0f13;
+            --cream: #f8f4ee;
+            --gray-light: #eeebe5;
+            --gray-mid: #ccc9c1;
+            --gray-text: #555;
+            --white: #ffffff;
+        }
 
-        .container { max-width: 1200px; margin: 20px auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; padding: 0 15px; }
-        .main-story { border-right: 1px solid #ccc; padding-right: 20px; }
-        .main-story img { width: 100%; height: auto; border: 1px solid #ddd; }
-        .main-story h2 { font-size: 32px; margin: 15px 0; line-height: 1.1; }
-        
-        .side-bar { border-right: 1px solid #ccc; padding: 0 10px; }
-        .breaking-tag { background: #d10000; color: #fff; padding: 2px 5px; font-size: 10px; vertical-align: middle; }
-        
-        .ad-spot { background: #eee; padding: 20px; text-align: center; font-style: italic; color: #666; border: 1px dashed #999; }
-        h3 { border-bottom: 2px solid #d10000; display: inline-block; margin-bottom: 10px; font-family: sans-serif; text-transform: uppercase; font-size: 14px; }
-        
-        footer { background: #000; color: #fff; text-align: center; padding: 40px; margin-top: 50px; }
-        
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .main-story { border-right: none; } }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Source Sans 3', 'Georgia', sans-serif;
+            background: var(--cream);
+            color: var(--black);
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            background: var(--white);
+            border-bottom: 5px double var(--black);
+            padding: 18px 0 12px;
+            text-align: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1;
+            color: var(--black);
+        }
+        .logo span { color: var(--red); }
+        .tagline {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-top: 6px;
+        }
+        .date-bar {
+            background: var(--black);
+            color: var(--white);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            background: var(--white);
+            border-bottom: 2px solid var(--black);
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav li a {
+            padding: 13px 18px;
+            display: block;
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        nav li a:hover { color: var(--red); }
+        nav li a.active { color: var(--red); border-bottom: 3px solid var(--red); }
+
+        /* ─── PAGE SYSTEM ─── */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* ─── HOME PAGE ─── */
+        .container {
+            max-width: 1200px;
+            margin: 28px auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 24px;
+            padding: 0 20px;
+        }
+        .main-story { border-right: 1px solid var(--gray-mid); padding-right: 24px; }
+        .main-story img { width: 100%; height: auto; border: 1px solid var(--gray-mid); }
+        .main-story h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            margin: 14px 0 10px;
+            line-height: 1.15;
+        }
+        .main-story p { font-size: 15px; line-height: 1.7; color: #333; margin-bottom: 12px; }
+        .breaking-tag {
+            background: var(--red);
+            color: var(--white);
+            padding: 2px 7px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .side-bar { border-right: 1px solid var(--gray-mid); padding: 0 14px; }
+        .side-bar h4 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 6px; }
+        .side-bar h4 a { color: var(--black); text-decoration: none; }
+        .side-bar h4 a:hover { color: var(--red); }
+        .side-bar p { font-size: 13px; line-height: 1.6; color: var(--gray-text); }
+        .section-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red);
+            border-bottom: 2px solid var(--red);
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        .ad-spot {
+            background: var(--gray-light);
+            border: 1px dashed var(--gray-mid);
+            padding: 20px;
+            text-align: center;
+            color: var(--gray-text);
+            font-style: italic;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ─── ENQUIRY FORM ─── */
+        .enquiry-form { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .enquiry-form input,
+        .enquiry-form textarea,
+        .enquiry-form select {
+            padding: 9px 12px;
+            border: 1px solid var(--gray-mid);
+            background: var(--white);
+            font-family: inherit;
+            font-size: 13px;
+            color: var(--black);
+            outline: none;
+            transition: border 0.2s;
+        }
+        .enquiry-form input:focus,
+        .enquiry-form textarea:focus,
+        .enquiry-form select:focus { border-color: var(--red); }
+        .enquiry-form textarea { height: 90px; resize: vertical; }
+        .btn-submit {
+            background: var(--black);
+            color: var(--white);
+            padding: 11px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: var(--red); }
+        .whatsapp-note {
+            font-size: 11px;
+            color: var(--gray-text);
+            text-align: center;
+            line-height: 1.5;
+        }
+        .whatsapp-note a { color: #25d366; font-weight: 600; text-decoration: none; }
+
+        /* ─── INNER PAGE HERO ─── */
+        .page-hero {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px 40px;
+            border-bottom: 4px solid var(--red);
+        }
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+        .page-hero p {
+            max-width: 600px;
+            margin: 14px auto 0;
+            font-size: 15px;
+            color: #bbb;
+            line-height: 1.7;
+        }
+
+        /* ─── SECTION WRAPPER ─── */
+        .section-wrap {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .section-wrap h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+        .divider {
+            width: 50px;
+            height: 3px;
+            background: var(--red);
+            margin-bottom: 30px;
+        }
+
+        /* ─── CARDS GRID ─── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--white);
+            border: 1px solid var(--gray-mid);
+            padding: 24px 20px;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+        .card:hover { border-color: var(--red); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 22px;
+        }
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .card p { font-size: 13px; line-height: 1.7; color: var(--gray-text); }
+        .card ul { padding-left: 18px; font-size: 13px; color: var(--gray-text); line-height: 1.9; }
+
+        /* ─── STATS STRIP ─── */
+        .stats-strip {
+            background: var(--black);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 30px;
+        }
+        .stat-item .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+        }
+        .stat-item .label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-top: 6px; }
+
+        /* ─── PROCESS STEPS ─── */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; }
+        .step {
+            padding: 30px 24px;
+            border-right: 1px solid var(--gray-mid);
+            border-bottom: 1px solid var(--gray-mid);
+            background: var(--white);
+        }
+        .step:last-child { border-right: none; }
+        .step-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--gray-light);
+            line-height: 1;
+        }
+        .step h4 { font-size: 15px; font-weight: 600; margin: 8px 0 6px; }
+        .step p { font-size: 13px; color: var(--gray-text); line-height: 1.6; }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .testimonial {
+            background: var(--white);
+            border-left: 4px solid var(--red);
+            padding: 20px 20px;
+        }
+        .testimonial blockquote { font-size: 14px; line-height: 1.8; color: #333; font-style: italic; }
+        .testimonial cite { display: block; margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--gray-text); letter-spacing: 1px; text-transform: uppercase; font-style: normal; }
+
+        /* ─── GALLERY ─── */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--gray-light); height: 160px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--gray-text); border: 1px solid var(--gray-mid); text-align: center; padding: 10px; }
+
+        /* ─── PRICING TABLE ─── */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .pricing-card {
+            background: var(--white);
+            border: 1px solid var(--gray-mid);
+            padding: 28px 20px;
+            text-align: center;
+        }
+        .pricing-card.featured { border: 2px solid var(--red); }
+        .pricing-card .plan-name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); font-weight: 600; }
+        .pricing-card .price { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; margin: 10px 0; }
+        .pricing-card .price sub { font-size: 14px; font-family: 'Source Sans 3', sans-serif; font-weight: 400; color: var(--gray-text); }
+        .pricing-card ul { list-style: none; font-size: 13px; color: var(--gray-text); line-height: 2; margin: 14px 0; }
+        .pricing-card ul li::before { content: "✓ "; color: var(--red); font-weight: 600; }
+        .btn-enquire {
+            display: inline-block;
+            background: var(--black);
+            color: var(--white);
+            padding: 9px 24px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-enquire:hover { background: var(--red); }
+
+        /* ─── CONTACT PAGE ─── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 40px;
+        }
+        .contact-info-item { margin-bottom: 24px; }
+        .contact-info-item .ci-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 4px; }
+        .contact-info-item p { font-size: 15px; line-height: 1.6; }
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25d366;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .whatsapp-btn:hover { background: #1da851; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px 20px 30px;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            margin-bottom: 14px;
+            color: var(--white);
+        }
+        .footer-col p, .footer-col a {
+            font-size: 13px;
+            color: #999;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* ─── SUCCESS MSG ─── */
+        .success-msg {
+            display: none;
+            background: #eaf7ee;
+            border: 1px solid #25d366;
+            color: #1a6832;
+            padding: 12px;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .main-story { border-right: none; padding-right: 0; }
+            .side-bar { border-right: none; padding: 0; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .logo { font-size: 28px; }
+            .page-hero h1 { font-size: 28px; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">ABC Advertising Agency</div>
-    <div class="date">Wednesday, June 2, 2026 | Legacy in Print Since 1995</div>
+    <div class="logo">Gangajal <span>Express</span> Agency</div>
+    <div class="tagline">Trusted Advertising &amp; Media Distribution Since 2005</div>
 </header>
+<div class="date-bar">Monday, June 8, 2026 &nbsp;|&nbsp; Print · Outdoor · Digital · Hyperlocal</div>
 
 <nav>
     <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#pamphlets">Pamphlets</a></li>
-        <li><a href="#boardings">Boardings</a></li>
-        <li><a href="#newspaper">Newspaper Ads</a></li>
-        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+        <li><a href="#" class="nav-link" data-page="pamphlets">📄 Pamphlets</a></li>
+        <li><a href="#" class="nav-link" data-page="boardings">🏙️ Hoardings</a></li>
+        <li><a href="#" class="nav-link" data-page="newspaper">📰 Newspaper Ads</a></li>
+
+        <li><a href="#" class="nav-link" data-page="contact">📞 Contact Us</a></li>
     </ul>
 </nav>
 
-<div class="container">
-    <!-- Main "Headline" Section -->
-    <div class="main-story">
-        <span class="breaking-tag">FRONT PAGE</span>
-        <h2>How Pamphlet Distribution is Reshaping Hyperlocal Markets</h2>
-        <img src="https://images.unsplash.com/photo-1560523160-754a9e25c68f?auto=format&fit=crop&q=80&w=800" alt="Pamphlet distribution">
-        <p>In an age of digital noise, the physical touch of a pamphlet remains the most effective way to reach households directly. ABC Agency specializes in GPS-tracked distribution across 50+ cities.</p>
-        <hr>
-        <h3>Case Study</h3>
-        <p><b>Retail Giant sees 40% footfall increase:</b> Using our premium newspaper insert service, local brands are reclaiming the morning routine of millions.</p>
+<!-- ══════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════ -->
+<div id="home" class="page active">
+    <div class="container">
+        <!-- Main Story -->
+        <div class="main-story">
+            <span class="breaking-tag">Feature Story</span>
+            <h2>How Pamphlet Distribution is Reshaping Hyperlocal Markets Across India</h2>
+            <img src="https://images.unsplash.com/photo-1560523160-754a9e25c68f?auto=format&fit=crop&q=80&w=800" alt="Pamphlet distribution team">
+            <p>In an age of digital noise, the physical touch of a pamphlet remains the most effective way to reach households directly. Gangajal Express Agency specializes in GPS-tracked distribution across 50+ cities with verified delivery reports.</p>
+            <hr style="margin: 18px 0; border: none; border-top: 1px solid var(--gray-mid);">
+            <p class="section-label">Case Study</p>
+            <p><strong>Retail brand sees 40% footfall increase:</strong> Using our premium newspaper insert service combined with hoarding placements at key junctions, local brands are reclaiming the morning attention of millions. Our multi-channel strategy ensures your message is seen, heard, and acted upon.</p>
+            <hr style="margin: 18px 0; border: none; border-top: 1px solid var(--gray-mid);">
+            <p class="section-label">Why Choose Us</p>
+            <p>With 20+ years in the advertising industry, Gangajal Express Agency brings unmatched expertise in both traditional and modern media channels. We serve small businesses, political campaigns, FMCG brands, and real estate developers across UP, Bihar, Delhi-NCR and beyond.</p>
+        </div>
+
+        <!-- Services Column -->
+        <div class="side-bar">
+            <p class="section-label">Our Services</p>
+            <div class="story" style="margin-bottom: 18px;">
+                <h4><a href="#" class="nav-link" data-page="boardings">Mega Hoardings</a></h4>
+                <p>24/7 visibility at high-traffic junctions. Sizes from 10×10 ft to 40×20 ft.</p>
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--gray-light); margin: 14px 0;">
+            <div class="story" style="margin-bottom: 18px;">
+                <h4><a href="#" class="nav-link" data-page="newspaper">Newspaper Inserts</a></h4>
+                <p>Reach lakhs of readers through leading Hindi &amp; English dailies.</p>
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--gray-light); margin: 14px 0;">
+            <div class="story" style="margin-bottom: 18px;">
+                <h4><a href="#" class="nav-link" data-page="pamphlets">Pamphlet Distribution</a></h4>
+                <p>Door-to-door, GPS-tracked delivery in targeted pin codes.</p>
+            </div>
+        </div>
+
+        <!-- Enquiry Column -->
+        <div>
+            <div class="ad-spot">
+                <strong>Your Ad Here</strong><br>
+                Prime spot available<br>
+                <br>
+                📞 <a href="tel:+919140439942" style="color: var(--red); font-weight:600; text-decoration:none;">+91 91404 39942</a>
+            </div>
+            <br>
+            <p class="section-label">Quick Enquiry</p>
+            <form class="enquiry-form" onsubmit="submitEnquiry(event, 'home')">
+                <input type="text" placeholder="Your Name" required id="h-name">
+                <input type="tel" placeholder="Mobile Number" required id="h-phone">
+                <select id="h-service">
+                    <option value="">-- Select Service --</option>
+                    <option>Pamphlet Distribution</option>
+                    <option>Hoarding / Billboard</option>
+                    <option>Newspaper Insert / Ad</option>
+                    <option>Digital Campaign</option>
+                    <option>Other</option>
+                </select>
+                <textarea placeholder="Describe your requirement..." id="h-msg"></textarea>
+                <button type="submit" class="btn-submit">Send Enquiry via WhatsApp</button>
+                <div class="whatsapp-note">Enquiry will be sent directly to owner on WhatsApp<br><a href="https://wa.me/919140439942" target="_blank">+91 91404 39942</a></div>
+            </form>
+            <div id="success-home" class="success-msg">✅ Enquiry sent! We'll call you back shortly.</div>
+        </div>
     </div>
 
-    <!-- Middle "Services" Column -->
-    <div class="side-bar">
-        <h3>Top Services</h3>
-        <div class="story">
-            <h4><a href="#" style="color:#000; text-decoration:none;">Mega Boardings: Dominating the Skyline</a></h4>
-            <p>Our premium hoardings at high-traffic junctions ensure 24/7 visibility for your brand.</p>
+    <!-- Stats Strip -->
+    <div class="stats-strip">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="num">50+</div><div class="label">Cities Covered</div></div>
+            <div class="stat-item"><div class="num">20+</div><div class="label">Years in Business</div></div>
+            <div class="stat-item"><div class="num">5000+</div><div class="label">Campaigns Executed</div></div>
+            <div class="stat-item"><div class="num">1Cr+</div><div class="label">Pamphlets Distributed</div></div>
+            <div class="stat-item"><div class="num">98%</div><div class="label">Client Retention</div></div>
         </div>
-        <hr>
-        <div class="story">
-            <h4><a href="#" style="color:#000; text-decoration:none;">Newspaper Classifieds</a></h4>
-            <p>Reach loyal readers through the world's most trusted print mediums.</p>
-        </div>
-    </div>
-
-    <!-- Right "Contact/Action" Column -->
-    <div>
-        <div class="ad-spot">
-            YOUR AD HERE<br>
-            Call: +91 98765 43210
-        </div>
-        <br>
-        <h3>Quick Enquiry</h3>
-        <form style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="text" placeholder="Name" style="padding:8px;">
-            <input type="email" placeholder="Email" style="padding:8px;">
-            <textarea placeholder="Your Requirement" style="padding:8px; height:100px;"></textarea>
-            <button style="background:#000; color:#fff; padding:10px; cursor:pointer;">SUBMIT NEWS PITCH</button>
-        </form>
     </div>
 </div>
 
+
+<!-- ══════════════════════════════════════════
+     PAGE: PAMPHLETS
+══════════════════════════════════════════ -->
+<div id="pamphlets" class="page">
+    <div class="page-hero">
+        <h1>Pamphlet &amp; Leaflet Distribution</h1>
+        <p>GPS-verified door-to-door distribution across residential, commercial and market areas in 50+ cities.</p>
+    </div>
+
+    <div class="section-wrap">
+        <h2>What We Offer</h2>
+        <div class="divider"></div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🏠</div>
+                <h3>Door-to-Door Distribution</h3>
+                <p>Our trained field teams deliver pamphlets directly into households in your target pin codes. Every delivery is tracked via GPS and you receive photographic proof reports.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛒</div>
+                <h3>Market &amp; Mandi Drops</h3>
+                <p>Reach buyers directly at vegetable mandis, weekly bazaars, and shopping complexes. Ideal for FMCG, grocery, and retail businesses.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚌</div>
+                <h3>Transit Distribution</h3>
+                <p>Pamphlets distributed at bus stands, railway stations, and auto stands to capture commuter attention during peak hours.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3>Design &amp; Print</h3>
+                <p>Full in-house design team to create eye-catching pamphlets and leaflets. A4, A5, A6 sizes. Glossy or matte finish. Minimum order 1,000 pieces.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Our Distribution Process</h2>
+        <div class="divider"></div>
+        <div class="steps">
+            <div class="step"><div class="step-num">01</div><h4>Brief &amp; Targeting</h4><p>You share your product, target audience, and geography. We map the ideal distribution zones.</p></div>
+            <div class="step"><div class="step-num">02</div><h4>Design &amp; Print</h4><p>Our designers create the artwork. You approve. We print in 24–48 hours.</p></div>
+            <div class="step"><div class="step-num">03</div><h4>Field Deployment</h4><p>Teams deploy on your scheduled date with GPS tracking enabled.</p></div>
+            <div class="step"><div class="step-num">04</div><h4>Report &amp; Review</h4><p>You receive a detailed report with photos and delivery locations.</p></div>
+        </div>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Pricing Packages</h2>
+        <div class="divider"></div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Starter</div>
+                <div class="price">₹2,500 <sub>/ 1,000 pcs</sub></div>
+                <ul>
+                    <li>A5 size pamphlet</li>
+                    <li>Single locality</li>
+                    <li>Basic GPS report</li>
+                    <li>2-day delivery</li>
+                </ul>
+                <button class="btn-enquire" onclick="goToContact('Pamphlet – Starter Package')">Enquire Now</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-name">⭐ Popular</div>
+                <div class="price">₹8,000 <sub>/ 5,000 pcs</sub></div>
+                <ul>
+                    <li>A4 size with design</li>
+                    <li>3 localities / zones</li>
+                    <li>Photo proof report</li>
+                    <li>Next-day delivery</li>
+                    <li>1 free revision</li>
+                </ul>
+                <button class="btn-enquire" onclick="goToContact('Pamphlet – Popular Package')">Enquire Now</button>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="price">Custom <sub>/ bulk</sub></div>
+                <ul>
+                    <li>Any size &amp; format</li>
+                    <li>City-wide distribution</li>
+                    <li>Dedicated manager</li>
+                    <li>Full GPS analytics</li>
+                    <li>Weekly campaigns</li>
+                </ul>
+                <button class="btn-enquire" onclick="goToContact('Pamphlet – Enterprise Package')">Enquire Now</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: HOARDINGS / BOARDINGS
+══════════════════════════════════════════ -->
+<div id="boardings" class="page">
+    <div class="page-hero">
+        <h1>Hoardings &amp; Outdoor Advertising</h1>
+        <p>Command the skyline with premium billboard placements at the busiest junctions in your city.</p>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Our Hoarding Solutions</h2>
+        <div class="divider"></div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Mega Billboards</h3>
+                <p>Giant format hoardings (40×20 ft and above) at prime highway and city entry points. Maximum visibility for brand launches and election campaigns.</p>
+                <ul><li>Illuminated &amp; non-illuminated</li><li>Vinyl or flex printing</li><li>Installation included</li></ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚦</div>
+                <h3>Junction &amp; Roundabout Boards</h3>
+                <p>Strategic placements at traffic signals, roundabouts, and busy intersections where vehicles pause — ensuring high dwell-time for your message.</p>
+                <ul><li>10×10, 20×10 ft formats</li><li>Monthly &amp; quarterly rates</li><li>Prayagraj, Kanpur, Varanasi &amp; more</li></ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏪</div>
+                <h3>Shop Fascia Boards</h3>
+                <p>Branded signage for your shop front, showroom, or office. Custom sizes with backlit LED options available.</p>
+                <ul><li>LED &amp; non-LED options</li><li>ACP / Flex / Acrylic</li><li>48-hour installation</li></ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚌</div>
+                <h3>Bus &amp; Auto Branding</h3>
+                <p>Wrap advertising on city buses and auto-rickshaws. Moving billboards that take your brand across every corner of the city 24×7.</p>
+                <ul><li>Full &amp; partial wraps</li><li>30-day minimum campaigns</li><li>City bus depot tie-ups</li></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Why Outdoor Still Wins</h2>
+        <div class="divider"></div>
+        <div class="steps">
+            <div class="step"><div class="step-num">24×7</div><h4>Always On</h4><p>Unlike digital ads, a hoarding never gets skipped, blocked, or scrolled past.</p></div>
+            <div class="step"><div class="step-num">10L+</div><h4>Impressions Daily</h4><p>A single prime-location hoarding generates lakhs of views every single day.</p></div>
+            <div class="step"><div class="step-num">100%</div><h4>Brand Safe</h4><p>No algorithm changes, no fake clicks — pure, guaranteed physical visibility.</p></div>
+            <div class="step"><div class="step-num">↗ ROI</div><h4>Proven Returns</h4><p>Our clients consistently report 30–60% brand recall increase after outdoor campaigns.</p></div>
+        </div>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Our Hoarding Portfolio</h2>
+        <div class="divider"></div>
+        <div class="gallery">
+            <div class="gallery-item">📍 Hazratganj Chowraha<br>40×20 ft Mega Hoarding<br><small>Prayagraj</small></div>
+            <div class="gallery-item">📍 Kalyanpur Junction<br>20×10 ft Illuminated Board<br><small>Kanpur</small></div>
+            <div class="gallery-item">📍 Varanasi Bypass<br>Highway Hoarding 60×20 ft<br><small>Varanasi</small></div>
+            <div class="gallery-item">📍 Gomti Nagar<br>Double-Side Hoarding<br><small>Prayagraj</small></div>
+            <div class="gallery-item">📍 Lanka Chowk<br>15×10 ft Junction Board<br><small>Varanasi</small></div>
+            <div class="gallery-item">📍 Civil Lines<br>Bus Branding – 50 Autos<br><small>Allahabad</small></div>
+        </div>
+        <p style="font-size: 12px; color: var(--gray-text); margin-top: 10px;">* Sample campaign locations. Contact us for current availability &amp; photos.</p>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Pricing at a Glance</h2>
+        <div class="divider"></div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Small</div>
+                <div class="price">₹5,000 <sub>/ month</sub></div>
+                <ul><li>10×10 ft board</li><li>Non-illuminated</li><li>Local junction</li><li>Print included</li></ul>
+                <button class="btn-enquire" onclick="goToContact('Hoarding – Small Board')">Enquire Now</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-name">⭐ Prime</div>
+                <div class="price">₹18,000 <sub>/ month</sub></div>
+                <ul><li>20×10 ft billboard</li><li>LED illuminated</li><li>Prime junction</li><li>Quarterly discount 15%</li><li>Free design</li></ul>
+                <button class="btn-enquire" onclick="goToContact('Hoarding – Prime Board')">Enquire Now</button>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Mega</div>
+                <div class="price">₹45,000+ <sub>/ month</sub></div>
+                <ul><li>40×20 ft &amp; above</li><li>Highway / bypass</li><li>Floodlit 24×7</li><li>Dedicated team</li><li>Monthly audit</li></ul>
+                <button class="btn-enquire" onclick="goToContact('Hoarding – Mega Billboard')">Enquire Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: NEWSPAPER ADS
+══════════════════════════════════════════ -->
+<div id="newspaper" class="page">
+    <div class="page-hero">
+        <h1>Newspaper Advertising</h1>
+        <p>Reach millions of loyal, engaged readers through leading Hindi and English dailies across UP &amp; India.</p>
+    </div>
+
+    <div class="section-wrap">
+        <h2>Newspaper Ad Services</h2>
+        <div class="divider"></div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📰</div>
+                <h3>Display Advertisements</h3>
+                <p>Full page, half page, quarter page, and jacket ads in leading newspapers. High-impact visual placements in front pages and supplements.</p>
+                <ul><li>Dainik Jagran, Amar Ujala, Hindustan</li><li>Times of India, Hindustan Times</li><li>Local &amp; regional editions</li></ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Classified Advertisements</h3>
+                <p>Cost-effective text and semi-display classifieds for matrimonial, jobs, property, business, and public notices.</p>
+                <ul><li>Daily &amp; Sunday editions</li><li>Multiple insertions discount</li><li>Legal / tender notices</li></ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🗞️</div>
+                <h3>Newspaper Inserts</h3>
+                <p>Pre-printed leaflets, pamphlets, and catalogues inserted inside newspapers for targeted locality delivery. Goes into homes with the morning paper.</p>
+                <ul><li>Locality-specific targeting</li><li>Minimum 5,000 inserts</li><li>24-hour dispatch</li></ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Obituary &amp; Public Notices</h3>
+                <p>Same-day publishing available for obituaries, tender notices, court summons, property notices, and government advertisements.</p>
+                <ul><li>Urgent same-day slots</li><li>Hindi &amp; English both</li><li>Legal compliance ensured</li></ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section-wrap">
+        <h2>Ad Sizes &amp; Rates</h2>
+        <div class="divider"></div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Classified</div>
+                <div class="price">₹500 <sub>/ insertion</sub></div>
+                <ul><li>Text-only 3–5 lines</li><li>Any local daily</li><li>Same-day booking</li></ul>
+                <button class="btn-enquire" onclick="goToContact('Newspaper – Classified Ad')">Book Now</button>
+            </div>
+            <div class="pricing-card featured">
+                <div class="plan-name">⭐ Quarter Page</div>
+                <div class="price">₹12,000 <sub>/ insertion</sub></div>
+                <ul><li>B&amp;W or colour</li><li>City edition</li><li>Design included</li><li>Proof before print</li><li>Multiple papers discount</li></ul>
+                <button class="btn-enquire" onclick="goToContact('Newspaper – Quarter Page Display Ad')">Book Now</button>
+            </div>
+            <div class="pricing-card">
+                <div class="plan-name">Full Page</div>
+                <div class="price">₹75,000+ <sub>/ insertion</sub></div>
+                <ul><li>Full colour</li><li>All-India / state edition</li><li>Premium positioning</li><li>Jacket ad available</li></ul>
+                <button class="btn-enquire" onclick="goToContact('Newspaper – Full Page Ad')">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- ══════════════════════════════════════════
+     PAGE: CONTACT US
+══════════════════════════════════════════ -->
+<div id="contact" class="page">
+    <div class="page-hero">
+        <h1>Contact Gangajal Express Agency</h1>
+        <p>Get in touch for a free consultation. All enquiries go directly to our owner on WhatsApp.</p>
+    </div>
+
+    <div class="section-wrap">
+        <div class="contact-grid">
+            <!-- Contact Info -->
+            <div>
+                <h2>Get In Touch</h2>
+                <div class="divider"></div>
+
+                <div class="contact-info-item">
+                    <div class="ci-label">Phone / WhatsApp</div>
+                    <p><strong>+91 91404 39942</strong></p>
+                    <a class="whatsapp-btn" href="https://wa.me/919140439942?text=Hello%2C%20I%20want%20to%20enquire%20about%20advertising%20services." target="_blank">
+                        💬 Chat on WhatsApp
+                    </a>
+                </div>
+
+                <div class="contact-info-item" style="margin-top: 20px;">
+                    <div class="ci-label">Office Address</div>
+                    <p>Gangajal Express Agency<br>
+                    Near Main Market, Prayagraj, Uttar Pradesh<br>
+                    PIN – 211001</p>
+                </div>
+
+                <div class="contact-info-item" style="margin-top: 20px;">
+                    <div class="ci-label">Working Hours</div>
+                    <p>Monday – Saturday: 9:00 AM – 7:00 PM<br>
+                    Sunday: 10:00 AM – 2:00 PM</p>
+                </div>
+
+                <div class="contact-info-item" style="margin-top: 20px;">
+                    <div class="ci-label">Services Available</div>
+                    <p>Pamphlet Distribution · Hoardings · Newspaper Ads · Digital Campaigns · Auto / Bus Branding · Event Advertising</p>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div>
+                <h2>Send a Direct Enquiry</h2>
+                <div class="divider"></div>
+                <form class="enquiry-form" onsubmit="submitEnquiry(event, 'contact')">
+                    <input type="text" placeholder="Full Name" required id="c-name">
+                    <input type="tel" placeholder="Mobile Number" required id="c-phone">
+                    <input type="email" placeholder="Email (optional)" id="c-email">
+                    <select id="c-service">
+                        <option value="">-- Select Service --</option>
+                        <option>Pamphlet Distribution</option>
+                        <option>Hoarding / Billboard</option>
+                        <option>Newspaper Insert / Ad</option>
+                        <option>WhatsApp Broadcast</option>
+                        <option>Digital Campaign</option>
+                        <option>Bus / Auto Branding</option>
+                        <option>Other / Not Sure</option>
+                    </select>
+                    <input type="text" placeholder="Your City / Location" id="c-city">
+                    <textarea placeholder="Describe your requirement in detail..." id="c-msg" style="height: 120px;"></textarea>
+                    <button type="submit" class="btn-submit">📲 Send Enquiry on WhatsApp</button>
+                    <div class="whatsapp-note">Your enquiry will open WhatsApp and be sent directly to<br><a href="https://wa.me/919140439942">+91 91404 39942</a></div>
+                </form>
+                <div id="success-contact" class="success-msg">✅ Opening WhatsApp to send your enquiry!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-strip" style="margin-top: 0;">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="num">24hr</div><div class="label">Response Time</div></div>
+            <div class="stat-item"><div class="num">Free</div><div class="label">Consultation</div></div>
+            <div class="stat-item"><div class="num">UP+</div><div class="label">Pan-India Reach</div></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ─── FOOTER ─── -->
 <footer>
-    <p>&copy; 2026 ABC Advertising Agency. All Rights Reserved. | Part of the ABC Media Group</p>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Gangajal Express Agency</h4>
+            <p>Trusted advertising and media distribution partner since 2005. Serving businesses, brands, and campaigns across 50+ cities.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#" class="nav-link" data-page="pamphlets">Pamphlet Distribution</a>
+            <a href="#" class="nav-link" data-page="boardings">Hoardings &amp; Billboards</a>
+            <a href="#" class="nav-link" data-page="newspaper">Newspaper Advertisements</a>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Contact</h4>
+            <p>📞 <a href="tel:+919140439942">+91 91404 39942</a></p>
+            <p>💬 <a href="https://wa.me/919140439942" target="_blank">WhatsApp Us</a></p>
+            <p>📍 Prayagraj, Uttar Pradesh</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Gangajal Express Agency. All Rights Reserved.
+        &nbsp;|&nbsp; Designed for Excellence in Advertising.
+    </div>
 </footer>
+
+<script>
+// ── PAGE NAVIGATION ──
+function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+    const page = document.getElementById(id);
+    if (page) page.classList.add('active');
+    document.querySelectorAll('.nav-link[data-page="' + id + '"]').forEach(a => a.classList.add('active'));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.addEventListener('click', function(e) {
+    const link = e.target.closest('.nav-link');
+    if (link) {
+        e.preventDefault();
+        const page = link.getAttribute('data-page');
+        if (page) showPage(page);
+    }
+});
+
+// ── ENQUIRY → WHATSAPP ──
+// All enquiries go directly to owner's WhatsApp: +91 9140439942
+function submitEnquiry(e, formId) {
+    e.preventDefault();
+
+    let name, phone, service, msg, city = '', email = '';
+
+    if (formId === 'home') {
+        name    = document.getElementById('h-name').value;
+        phone   = document.getElementById('h-phone').value;
+        service = document.getElementById('h-service').value || 'Not specified';
+        msg     = document.getElementById('h-msg').value || '';
+    } else {
+        name    = document.getElementById('c-name').value;
+        phone   = document.getElementById('c-phone').value;
+        service = document.getElementById('c-service').value || 'Not specified';
+        msg     = document.getElementById('c-msg').value || '';
+        city    = document.getElementById('c-city').value || '';
+        email   = document.getElementById('c-email').value || '';
+    }
+
+    // Build WhatsApp message
+    let text = '🙏 *New Enquiry – Gangajal Express Agency*\n\n';
+    text += '👤 *Name:* ' + name + '\n';
+    text += '📞 *Mobile:* ' + phone + '\n';
+    if (email) text += '📧 *Email:* ' + email + '\n';
+    if (city)  text += '📍 *City:* ' + city + '\n';
+    text += '📢 *Service Required:* ' + service + '\n';
+    if (msg)   text += '💬 *Message:* ' + msg + '\n';
+    text += '\n_Sent via Gangajal Express Agency Website_';
+
+    const encoded = encodeURIComponent(text);
+    const waURL = 'https://wa.me/919140439942?text=' + encoded;
+
+    // Show success message briefly
+    const successEl = document.getElementById('success-' + formId);
+    if (successEl) { successEl.style.display = 'block'; }
+
+    // Open WhatsApp after short delay
+    setTimeout(function() {
+        window.open(waURL, '_blank');
+        if (successEl) successEl.style.display = 'none';
+    }, 800);
+}
+
+// ── PRE-FILL SERVICE FROM PRICING BUTTONS ──
+function goToContact(serviceText) {
+    showPage('contact');
+    setTimeout(function() {
+        const sel = document.getElementById('c-service');
+        if (sel) {
+            for (let i = 0; i < sel.options.length; i++) {
+                if (sel.options[i].text.toLowerCase().includes(serviceText.split('–')[0].trim().toLowerCase())) {
+                    sel.selectedIndex = i;
+                    break;
+                }
+            }
+            const msgEl = document.getElementById('c-msg');
+            if (msgEl) msgEl.value = 'I am interested in: ' + serviceText + '. Please share details and pricing.';
+        }
+    }, 300);
+}
+</script>
 
 </body>
 </html>
